@@ -34,7 +34,7 @@ function formatValueAsEUR(val){
 function getWalletID(){
     jQuery.ajax({
         type: 'POST',
-/*WICHTIG*/ url: '/assets/check-wallet/lnbits-stuff.php', // <-- Hier der Pfad/URL zu der php mit den Funktionen
+/*WICHTIG*/ url: '/assets/check_lnbits_wallet/check-wallet.php', // <-- Hier der Pfad/URL zu der php mit den Funktionen
         dataType: 'JSON',
         data: {functionname: 'getWalletID', arguments: ['name']}, // <---- Name der Funktion die du aufrufen willst und die Argumente die du Übergeben willst
         success: function (resp) { //Diese Funktion wird bei erfolgreicher abfrage ausgelöst Hier Daten rausziehen und ggf. Fehler abfangen 
@@ -49,7 +49,7 @@ function getWalletID(){
 function getBTCinfo(){
     jQuery.ajax({
         type: 'POST',
-/*WICHTIG*/ url: '/assets/check-wallet/lnbits-stuff.php', // <-- Hier der Pfad/URL zu der php mit den Funktionen
+/*WICHTIG*/ url: '/assets/check_lnbits_wallet/check-wallet.php', // <-- Hier der Pfad/URL zu der php mit den Funktionen
         dataType: 'JSON',
         data: {functionname: 'getBTCinfo', arguments: ['fck bnks']}, // <---- Name der Funktion die du aufrufen willst und die Argumente die du Übergeben willst
         success: function (resp) { //Diese Funktion wird bei erfolgreicher abfrage ausgelöst Hier Daten rausziehen und ggf. Fehler abfangen 
@@ -64,7 +64,7 @@ function getBTCinfo(){
 function getWalletDetails(){
     jQuery.ajax({
         type: 'POST',
-/*WICHTIG*/ url: '/assets/check-wallet/lnbits-stuff.php', // <-- Hier der Pfad/URL zu der php mit den Funktionen
+/*WICHTIG*/ url: '/assets/check_lnbits_wallet/check-wallet.php', // <-- Hier der Pfad/URL zu der php mit den Funktionen
         dataType: 'JSON',
         data: {functionname: 'getWalletDetails', arguments: ['fck bnks']}, // <---- Name der Funktion die du aufrufen willst und die Argumente die du Übergeben willst
         success: function (resp) { //Diese Funktion wird bei erfolgreicher abfrage ausgelöst Hier Daten rausziehen und ggf. Fehler abfangen 
