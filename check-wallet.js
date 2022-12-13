@@ -38,7 +38,7 @@ function getWalletID(){
         dataType: 'JSON',
         data: {functionname: 'getWalletID', arguments: ['name']}, // <---- Name der Funktion die du aufrufen willst und die Argumente die du Übergeben willst
         success: function (resp) { //Diese Funktion wird bei erfolgreicher abfrage ausgelöst Hier Daten rausziehen und ggf. Fehler abfangen 
-               console.log(resp);
+                console.log(resp);
                 walletID = JSON.parse(resp);
                 document.getElementById('walletID').innerHTML = walletID;
                
