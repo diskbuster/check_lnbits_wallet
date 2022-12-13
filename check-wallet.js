@@ -69,7 +69,7 @@ function getWalletDetails(){
         data: {functionname: 'getWalletDetails', arguments: ['fck bnks']}, // <---- Name der Funktion die du aufrufen willst und die Argumente die du Übergeben willst
         success: function (resp) { //Diese Funktion wird bei erfolgreicher abfrage ausgelöst Hier Daten rausziehen und ggf. Fehler abfangen 
                 balance = resp;
-                document.getElementById('balanceSat').innerHTML = (balance/1000);
+                document.getElementById('balanceSat').innerHTML = formatValueAsSatoshi(balance/1000);
                 getBTCinfo();
             }
     });
