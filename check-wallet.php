@@ -37,10 +37,11 @@ License: GPLv2 or later
       
 
       
-      $context  = stream_context_create( $options );
-      $result = file_get_contents( $url, false, $context );
-      $response = json_decode( $result );
-      echo $response->name;
+ $context  = stream_context_create( $options );
+   $result = file_get_contents( $url, false, $context );
+   //$response = json_decode( $result );
+   //echo $response->name;
+   echo $result;
      
 
     } 

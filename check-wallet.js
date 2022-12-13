@@ -4,6 +4,7 @@
 var btcInfo;
 var payment_request;
 var balance; 
+var name; 
 var walletID;
 var aniSum;
 var transactions = 3; // transactions count to be used 
@@ -39,8 +40,7 @@ function getWalletID(){
         data: {functionname: 'getWalletID', arguments: ['name']}, // <---- Name der Funktion die du aufrufen willst und die Argumente die du Übergeben willst
         success: function (resp) { //Diese Funktion wird bei erfolgreicher abfrage ausgelöst Hier Daten rausziehen und ggf. Fehler abfangen 
                 console.log(resp);
-                walletID = JSON.parse(resp);
-                document.getElementById('walletID').innerHTML = walletID;
+                document.getElementById('walletID').innerHTML = resp.name;
                
             }
     });
