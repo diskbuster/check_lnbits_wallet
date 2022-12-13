@@ -1,0 +1,127 @@
+<?php
+
+/*
+
+Plugin Name: lnbits stuff
+Plugin URI: https://satoshibox.io
+Description: plugin for lnbits functions
+Version: 1.0
+Author: Disbuster / onnbt
+Author URI: https://github.com/onnbt/lnQr_php
+ 
+License: GPLv2 or later
+
+
+*/
+	
+
+
+
+
+    header('Content-Type: application/json');
+
+
+    function getWalletID($key)
+    {
+  
+      $url = 'https://lnbits.papersats.io/api/v1/wallet';//API URL
+   
+      $options = array(
+        'http' => array(
+        'method'  => 'GET',
+        'header'=>  "Content-Type: application/json\r\n".
+              "Accept: application/json\r\n".
+              "X-Api-Key: ".$key."\r\n" //Invoice Key
+        )
+      );
+      
+      $context  = stream_context_create( $options );
+      $result = file_get_contents( $url, false, $context );
+      //$response = json_decode( $result );
+      //echo $response->name;
+      echo $result;
+
+    } 
+    
+    function btcInfo($key)
+    {
+      //https://www.blockchain.com/api/exchange_rates_api
+      $url = 'https://blockchain.info/ticker';//API URL 4 btc to eur
+    
+    
+      $options = array(
+          'http' => array(
+          'method'  => 'GET'
+          )
+      );
+        
+      $context  = stream_context_create( $options );
+      $result = file_get_contents( $url, false, $context );
+      $response = json_decode( $result );
+      echo $result;
+      //return $response;
+    }
+
+    function getWalletDetails($key)
+    {
+      $url = 'https://lnbits.papersats.io/api/v1/wallet';//API URL
+
+      $options = array(
+          'http' => array(
+          'method'  => 'GET',
+          'header'=>  "Content-Type: application/json\r\n".
+                      "Accept: application/json\r\n".
+              
+                      "X-Api-Key: ".$key."\r\n" //Invoice Key //Invoice Key vps
+
+          )
+      );
+        
+      $context  = stream_context_create( $options );
+      $result = file_get_contents( $url, false, $context );
+      $response = json_decode( $result );
+
+      echo $response->balance;
+    }
+
+    //block um GET/POST -Requests endgegen zu nehmen und an die jeweilige funktion weiterzuleiten 
+    if( !isset($_POST['functionname']) ) { $aResult['error'] = 'No function name!'; }
+
+    if( !isset($_POST['arguments']) ) { $aResult['error'] = 'No function arguments!'; }
+
+    if( !isset($aResult['error']) ) {
+
+        switch($_POST['functionname']) {
+               case 'getWalletID':
+                if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 1) ) {
+                    $aResult['error'] = 'Error in arguments!';
+                }
+                else {
+                    $aResult['result'] = getWalletID($_POST['arguments'][0]);
+                }
+                break;
+                case 'getBTCinfo':
+                    if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 1) ) {
+                        $aResult['error'] = 'Error in arguments!';
+                    }
+                    else {
+                        $aResult['result'] = btcInfo($_POST['arguments'][0]);
+                    }
+                    break;      
+                case 'getWalletDetails':
+                    if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 0) ) {
+                        $aResult['error'] = 'Error in arguments!';
+                    }
+                    else {
+                        $aResult['result'] = getWalletDetails($_POST['arguments'][0]);
+                    }
+                    break;                                                     
+             default:
+                $aResult['error'] = 'Not found function '.$_POST['functionname'].'!';
+                break;
+        }
+
+    }
+
+    //echo json_encode($aResult);
+?>
