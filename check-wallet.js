@@ -33,6 +33,7 @@ function formatValueAsEUR(val){
 
 
 function getWalletID(){
+    console.log("start");
     jQuery.ajax({
         type: 'POST',
 /*WICHTIG*/ url: '/assets/check_lnbits_wallet/check-wallet.php', // <-- Hier der Pfad/URL zu der php mit den Funktionen
@@ -40,6 +41,7 @@ function getWalletID(){
         data: {functionname: 'getWalletID', arguments: ['name']}, // <---- Name der Funktion die du aufrufen willst und die Argumente die du Übergeben willst
         success: function (resp) { //Diese Funktion wird bei erfolgreicher abfrage ausgelöst Hier Daten rausziehen und ggf. Fehler abfangen 
                 console.log(resp);
+                //walletID = JSON.parse(resp);
                 document.getElementById('walletID').innerHTML = resp.name;
                
             }
@@ -69,7 +71,7 @@ function getWalletDetails(){
         data: {functionname: 'getWalletDetails', arguments: ['fck bnks']}, // <---- Name der Funktion die du aufrufen willst und die Argumente die du Übergeben willst
         success: function (resp) { //Diese Funktion wird bei erfolgreicher abfrage ausgelöst Hier Daten rausziehen und ggf. Fehler abfangen 
                 balance = resp;
-                document.getElementById('balanceSat').innerHTML = formatValueAsSatoshi(balance/1000);
+                document.getElementById('balanceSat').innerHTML = parseInt((balance/1000));
                 getBTCinfo();
             }
     });

@@ -87,60 +87,45 @@ License: GPLv2 or later
       echo $response->balance;
     }
 
-    //block um GET/POST -Requests endgegen zu nehmen und an die jeweilige funktion weiterzuleiten 
-    if( !isset($_POST['functionname']) ) { $aResult['error'] = 'No function name!'; }
-
-    if( !isset($_POST['arguments']) ) { $aResult['error'] = 'No function arguments!'; }
-
-    if( !isset($aResult['error']) ) {
-
-        switch($_POST['functionname']) {
-               case 'getWalletID':
-                if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 1) ) {
-                    $aResult['error'] = 'Error in arguments!';
-                }
-                else {
-                    $aResult['result'] = getWalletID($_POST['arguments'][0]);
-                }
-                break;
-                case 'getBTCinfo':
-                    if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 1) ) {
-                        $aResult['error'] = 'Error in arguments!';
-                    }
-                    else {
-                        $aResult['result'] = btcInfo($_POST['arguments'][0]);
-                    }
-                    break;      
-                case 'getWalletDetails':
-                    if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 0) ) {
-                        $aResult['error'] = 'Error in arguments!';
-                    }
-                    else {
-                        $aResult['result'] = getWalletDetails($_POST['arguments'][0]);
-                    }
-                    break;
-                case 'freiBez':
-                    if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 0) ) {
-                            $aResult['error'] = 'Error in arguments!';
-                    }
-                    else {
-                            $aResult['result'] = getFreiBez($_POST['arguments'][0]);
-                    }
-                    break;
-                case 'getGesperteBezAll':
-                    if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 0) ) {
-                            $aResult['error'] = 'Error in arguments!';
-                          }
-                    else {
-                            $aResult['result'] = getGesperteBezAll($_POST['arguments'][0]);
-                    }
-                    break;                                                        
-             default:
-                $aResult['error'] = 'Not found function '.$_POST['functionname'].'!';
-                break;
-        }
-
-    }
-
-    //echo json_encode($aResult);
+   //block um GET/POST -Requests endgegen zu nehmen und an die jeweilige funktion weiterzuleiten 
+   if( !isset($_POST['functionname']) ) { $aResult['error'] = 'No function name!'; }
+   
+   if( !isset($_POST['arguments']) ) { $aResult['error'] = 'No function arguments!'; }
+   
+   if( !isset($aResult['error']) ) {
+   
+       switch($_POST['functionname']) {
+              case 'getWalletID':
+               if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 1) ) {
+                   $aResult['error'] = 'Error in arguments!';
+               }
+               else {
+                   $aResult['result'] = getWalletID($_POST['arguments'][0]);
+               }
+               break;
+               case 'getBTCinfo':
+                   if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 1) ) {
+                       $aResult['error'] = 'Error in arguments!';
+                   }
+                   else {
+                       $aResult['result'] = btcInfo($_POST['arguments'][0]);
+                   }
+                   break;      
+               case 'getWalletDetails':
+                   if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 0) ) {
+                       $aResult['error'] = 'Error in arguments!';
+                   }
+                   else {
+                       $aResult['result'] = getWalletDetails($_POST['arguments'][0]);
+                   }
+                   break;
+                                                     
+            default:
+               $aResult['error'] = 'Not found function '.$_POST['functionname'].'!';
+               break;
+       }
+   
+   }
+   
+   //echo json_encode($aResult);
 ?>
